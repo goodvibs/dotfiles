@@ -1,0 +1,23 @@
+macos-titlebar-style = transparent
+shell-integration = zsh
+font-family = JetBrains Mono
+theme = TokyoNight Night
+split-divider-color = #dc9fe0
+unfocused-split-opacity = 0.65
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+
+background-opacity = 0.9
+background-blur-radius = 30
+
+keybind = super+;=clear_screen
+
+keybind = super+r=reload_config
+
+keybind = super+enter=unbind
+keybind = super+h=unbind
+keybind = super+j=unbind
+keybind = super+k=unbind
+keybind = super+l=unbind
+
+window-save-state = always
