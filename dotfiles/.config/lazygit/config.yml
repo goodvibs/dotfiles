@@ -2,3 +2,8 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+customCommands:
+  - key: "W"
+    command: git commit --no-verify
+    context: "global"
+    output: terminal
