@@ -1,5 +1,6 @@
 macos-titlebar-style = transparent
 shell-integration = zsh
+shell-integration-features = ssh-terminfo
 font-family = JetBrains Mono
 theme = TokyoNight Night
 split-divider-color = #dc9fe0
