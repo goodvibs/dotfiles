@@ -152,10 +152,6 @@ keybinds clear-defaults=true {
         bind "Super j" { MoveFocus "down"; }
         bind "Super k" { MoveFocus "up"; }
         bind "Super l" { MoveFocusOrTab "right"; }
-        bind "Super H" { NewPane "left"; }
-        bind "Super J" { NewPane "down"; }
-        bind "Super K" { NewPane "up"; }
-        bind "Super L" { NewPane "right"; }
         bind "Super i" { MoveTab "left"; }
         bind "Super o" { MoveTab "right"; }
     }
