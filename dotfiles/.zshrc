@@ -1,6 +1,3 @@
-# --- p10k instant prompt (must be first) --------------------------------------
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
 # --- theme -------------------------------------------------------------------
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.p10k.zsh
@@ -24,6 +21,7 @@ path=(
   /bin
   /usr/sbin
   /sbin
+  "$HOME/Developer/extra/git-open"
 )
 
 export PATH
