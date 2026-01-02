@@ -6,7 +6,7 @@ return {
         'nvim-tree/nvim-web-devicons'
     },
 
-    version = '1.*',
+    version = 'v1.6',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
