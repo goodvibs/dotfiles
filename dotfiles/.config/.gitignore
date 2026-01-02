@@ -1,11 +1,24 @@
 *
 
 !aerospace/
+!aerospace/**/*
+
 !ghostty/
+!ghostty/**/*
+
 !git/
+!git/**/*
+
 !karabiner/
+!karabiner/**/*
+
 !lazygit/
+!lazygit/**/*
+
 !nvim/
+!nvim/**/*
+
 !zellij/
+!zellij/**/*
 
 **/.DS_Store
