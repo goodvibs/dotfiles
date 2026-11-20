@@ -115,6 +115,8 @@ brew "marksman"
 brew "mbedtls@2", link: true
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Modern shell for the GitHub era
+brew "nushell"
 # Development kit for the Java programming language
 brew "openjdk"
 # Package compiler and linker metadata toolkit
