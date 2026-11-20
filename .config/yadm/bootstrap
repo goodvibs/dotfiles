@@ -1,0 +1,50 @@
+#!/bin/sh
+# yadm bootstrap. Runs after `yadm clone --bootstrap <url>`, or on demand with
+# `yadm bootstrap`. Safe to re-run.
+#
+# Environment:
+#   DOTFILES_SKIP_BREW=1       skip `brew bundle --global`
+#   DOTFILES_SKIP_PLUGINS=1    skip the plugin install scripts
+#   DOTFILES_PRIVATE_URL=...   also clone/update the private dotfiles repo
+#   DOTFILES_PRIVATE_CLASS=... yadm class for the private repo (default: Work)
+
+PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
+export PATH
+
+step() { printf '\n==> %s\n' "$*"; }
+warn() { printf 'warning: %s\n' "$*" >&2; }
+
+step "Submodules (nvim, helix)"
+yadm submodule update --init --recursive || warn "submodule update failed"
+
+if [ "${DOTFILES_SKIP_BREW:-0}" = "1" ]; then
+  step "Homebrew bundle (skipped)"
+elif command -v brew >/dev/null 2>&1; then
+  step "Homebrew bundle (~/.Brewfile)"
+  brew bundle --global || warn "brew bundle reported failures"
+else
+  warn "Homebrew not found; skipping brew bundle (https://brew.sh)"
+fi
+
+if [ "${DOTFILES_SKIP_PLUGINS:-0}" = "1" ]; then
+  step "Plugins (skipped)"
+else
+  step "Plugins"
+  "$HOME/.config/yadm/plugins/install-plugins" || warn "some plugin installs failed"
+fi
+
+if [ -n "${DOTFILES_PRIVATE_URL:-}" ]; then
+  step "Private dotfiles"
+  private_repo="$HOME/.local/share/yadm-private/repo.git"
+  if [ -d "$private_repo" ]; then
+    yadm-private pull || warn "yadm-private pull failed"
+  else
+    # --no-bootstrap: the private repo has no bootstrap, and this clone must not
+    # touch the public repo (yadm-private uses its own --yadm-repo).
+    yadm-private clone --no-bootstrap "$DOTFILES_PRIVATE_URL" || warn "private clone failed"
+  fi
+  yadm-private config local.class "${DOTFILES_PRIVATE_CLASS:-Work}"
+  yadm-private alt
+fi
+
+step "Done"
