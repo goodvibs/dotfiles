@@ -11,6 +11,10 @@
 PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export PATH
 
+# `git submodule` refuses to run outside the work tree, so don't depend on the
+# caller's working directory.
+cd "$HOME" || exit 1
+
 step() { printf '\n==> %s\n' "$*"; }
 warn() { printf 'warning: %s\n' "$*" >&2; }
 
