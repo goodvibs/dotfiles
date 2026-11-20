@@ -1,0 +1,12 @@
+#!/bin/sh
+# Run every plugin install script. Output goes to $DOTFILES_PLUGINS_BIN
+# (default: ~/.local/share/dotfiles/plugins/bin), which is not tracked.
+DIR="$(cd "$(dirname "$0")" && pwd)"
+status=0
+
+for file in "$DIR/install-scripts/"*.sh; do
+  echo "Running plugin install script: $file"
+  "$file" || { echo "warning: $file failed" >&2; status=1; }
+done
+
+exit "$status"

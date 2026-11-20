@@ -1,10 +1,3 @@
-# Resolve setup repo root from the ~/.zshrc symlink target (configs/zshrc).
-if [[ -L "$HOME/.zshrc" ]]; then
-  SETUP_DIR="$(cd "$(dirname "$(readlink "$HOME/.zshrc")")/.." && pwd)"
-else
-  SETUP_DIR="${SETUP_DIR:-$HOME/Developer/Personal/setup}"
-fi
-
 ### THEME
 HOMEBREW_PREFIX=/opt/homebrew
 source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
@@ -20,7 +13,7 @@ typeset -U path PATH
 path=(
   "$REX_BIN_DIR"
   "$HOME/.local/bin"
-  "$HOME/.local/share/setup/plugins/bin"
+  "$HOME/.local/share/dotfiles/plugins/bin"
   "$HOMEBREW_PREFIX/opt/rustup/bin"
   "$HOME/.cargo/bin"
   "$HOME/.lmstudio/bin"
@@ -34,9 +27,6 @@ path=(
   /bin
   /usr/sbin
   /sbin
-  "$SETUP_DIR/bin"
-  "$SETUP_DIR/scripts"
-  "$SETUP_DIR/plugins/bin"
 )
 
 export PATH
