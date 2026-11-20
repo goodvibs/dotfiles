@@ -1,0 +1,9 @@
+#!/bin/sh
+# Second yadm instance for machine/work-specific files tracked in the private
+# dotfiles repo. It has its own repo, data, and config directories, and shares
+# $HOME as the work tree with the public `yadm`.
+exec yadm \
+  --yadm-dir "$HOME/.config/yadm-private" \
+  --yadm-data "$HOME/.local/share/yadm-private" \
+  --yadm-repo "$HOME/.local/share/yadm-private/repo.git" \
+  "$@"
